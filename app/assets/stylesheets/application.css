@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.inline-radio label {
+  padding-left: 5px; /* Adjust as needed */
+}
+
+.yolp-navbar {
+  background-color: #de6b48;
+  color: white;
+}
