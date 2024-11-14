@@ -1,33 +1,32 @@
-
 <div>
-   <div class="d-flex flex-row align-content-between">
+  <div class="d-flex flex-row align-content-between">
     <div class="w-50">
       <h1><%= @restaurant.name %></h1>
+      <p class="card-text"><%= @restaurant.category.capitalize %></p>
       <p class="card-text"><%= @restaurant.address %> - <%= @restaurant.phone_number %></p>
       <%= link_to restaurants_path do %>
         <div class="btn btn-secondary">Go back</div>
       <% end %>
-
     </div>
     <div class="w-50">
-      <img class="w-100 object-fit-contain" src="https://loremflickr.com/320/240/dish,<%= @restaurant.category %>/all?lock=1" alt="Card image cap">
+      <img class="w-100 object-fit-contain" src="https://loremflickr.com/320/240/dish,<%= @restaurant.category %>/all?lock=0" alt="Card image cap">
     </div>
-    </div>
-    <% @restaurant.reviews.each do |review| %>
+  </div>
+  <% @restaurant.reviews.each do |review| %>
     <div class="card mt-3">
       <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-muted">
-            <% review.rating.times do %>
-              <i class="fa-solid fa-star"></i>
-            <% end %></h6>
-            <p class="card-text"><%= review.content %></p>
+        <h6 class="card-subtitle mb-2 text-muted">
+          <% review.rating.times do %>
+            <i class="fa-solid fa-star"></i>
+          <% end %></h6>
+        <p class="card-text"><%= review.content %></p>
       </div>
     </div>
-    <% end %>
-    <h5 class="pt-3">Write a review</h5>
-      <%= simple_form_for [@restaurant, @review] do |f| %>
-        <%= f.input :content %>
-        <%= f.input :rating, as: :radio_buttons, collection: %w[0 1 2 3 4 5], item_wrapper_class: 'd-inline ms-3 inline-radio' %>
-        <%= f.submit 'Submit review', class: 'btn btn-primary' %>
-      <% end %>
+  <% end %>
+  <h5 class="pt-3">Write a review</h5>
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+    <%= f.input :content %>
+    <%= f.input :rating, as: :radio_buttons, collection: %w[0 1 2 3 4 5], item_wrapper_class: 'd-inline ms-3 inline-radio' %>
+    <%= f.submit 'Submit review', class: 'btn btn-primary' %>
+  <% end %>
 </div>
